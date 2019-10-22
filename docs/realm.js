@@ -312,6 +312,14 @@ class Realm {
     compact() { }
 
     /**
+     * Advance the Realm to the most recent version
+     * 
+     * Note that this method will return false if the Realm is in a write transaction
+     * @returns {true} if successful
+     */
+    refresh() { }
+
+    /**
      * Writes a compacted copy of the Realm to the given path.
      *
      * The destination file cannot already exist.

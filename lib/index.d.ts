@@ -973,6 +973,11 @@ declare class Realm {
     compact(): boolean;
 
     /**
+     * @returns boolean
+     */
+    refresh(): boolean;
+
+    /**
      * Write a copy to destination path
      * @param path destination path
      * @param encryptionKey encryption key to use

@@ -238,6 +238,7 @@ public:
     static void remove_all_listeners(ContextType, ObjectType, Arguments &, ReturnValue &);
     static void close(ContextType, ObjectType, Arguments &, ReturnValue &);
     static void compact(ContextType, ObjectType, Arguments &, ReturnValue &);
+    static void refresh(ContextType, ObjectType, Arguments &, ReturnValue &);
     static void writeCopyTo(ContextType, ObjectType, Arguments &, ReturnValue &);
     static void delete_model(ContextType, ObjectType, Arguments &, ReturnValue &);
     static void object_for_object_id(ContextType, ObjectType, Arguments &, ReturnValue&);
@@ -316,6 +317,7 @@ public:
         {"removeAllListeners", wrap<remove_all_listeners>},
         {"close", wrap<close>},
         {"compact", wrap<compact>},
+        {"refresh", wrap<refresh>},
         {"writeCopyTo", wrap<writeCopyTo>},
         {"deleteModel", wrap<delete_model>},
         {"privileges", wrap<privileges>},
@@ -1201,6 +1203,14 @@ void RealmClass<T>::close(ContextType ctx, ObjectType this_object, Arguments &ar
 
     SharedRealm realm = *get_internal<T, RealmClass<T>>(this_object);
     realm->close();
+}
+
+template<typename T>
+void RealmClass<T>::refresh(ContextType ctx, ObjectType this_object, Arguments &args, ReturnValue &return_value) {
+    args.validate_maximum(0);
+
+    SharedRealm realm = *get_internal<T, RealmClass<T>>(this_object);
+    realm->refresh();
 }
 
 template<typename T>
